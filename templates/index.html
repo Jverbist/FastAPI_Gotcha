@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+<!-- login form -->
+<div id="login" class="container">
+    <div class="row">
+        <div class="row col s4">
+            <h3>login</h3>
+        </div>
+        <form class="col s12" 
+               hx-post="/login/"
+               hx-swap="innerhtml"
+               hx-target="#login"                    
+               method="post">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email"  name= "email"  class="validate" required/>
+                    <label for="email">email</label>
+                    <span
+                        class="helper-text"
+                        data-error="please enter a valid email."
+                        data-success=""></span
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field  col s12">
+                    <input id="password" name="password" type="password" class="validate" required/>
+                    <label for="password">password</label>
+                </div>
+            </div>
+            <div class="row col s4">
+                <button class="btn waves-effect indigo darken-2 waves-light " type="submit" name="action">submit
+                    <i class="material-icons right">send</i>
+                  </button>
+            </div>
+        </form>
+        <div class="row col s4">
+            <p>don't have an account? <a href="/register/" class="">register here.</a></p>
+        </div>
+    </div>
+</div>
+<!-- end login form -->
+{% endblock %}

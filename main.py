@@ -1,4 +1,4 @@
-from fastapi import Depends, FastAPI, Request, Form
+from fastapi import Depends, FastAPI, Request, Form, requests
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
@@ -53,10 +53,14 @@ async def create_auth_header(
         
     
     response = await call_next(request)
-    return response    
-
+    return response 
 
 @app.get("/", response_class=HTMLResponse)
+async def start(request:Request):
+    return templates.TemplateResponse("base.html", {"request": request})
+
+
+@app.get("/login/", response_class=HTMLResponse)
 async def root(request: Request):
     return templates.TemplateResponse("index.html",
      {"request": request})

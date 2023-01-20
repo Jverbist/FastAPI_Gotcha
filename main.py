@@ -73,10 +73,10 @@ async def registration(request: Request):
 
 
 @app.post("/register/", response_class=HTMLResponse)
-async def register(request: Request, username: str = Form(...), email: str = Form(...), password: str = Form(...)):
+async def register(request: Request, email: str = Form(...), password: str = Form(...)):
     user = User(email = email,
-        password = password, username = username)    
-    query = users.insert().values(username = user.username, email = user.email,
+        password = password)    
+    query = users.insert().values( email = user.email,
         password= auth_handler.get_hash_password(user.password))
     result = await database.execute(query)
     # TODO verify success and handle errors
